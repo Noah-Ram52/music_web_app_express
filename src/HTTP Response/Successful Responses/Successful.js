@@ -1,0 +1,4 @@
+const OK_REQUEST = 200;
+const CREATED_REQUEST = 201;
+
+module.exports = { OK_REQUEST, CREATED_REQUEST };
