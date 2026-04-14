@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
 
 // Implemennt findUserByCredentials static method
 // Look in WTWR project for reference
-userSchema.statics.findUserByCredentials = function(email, password) {
+userSchema.statics.findUserByCredentials = function findUserByCredentials(email, password) {
   return this.findOne({ email }).select('+password')
     .then(user => {
       if (!user) {
@@ -41,7 +41,7 @@ userSchema.statics.findUserByCredentials = function(email, password) {
 };
 
 // Hash password before saving
-userSchema.pre('save', async function() {
+userSchema.pre('save', async function hashPasswprd() {
   if (!this.isModified('password')) return;
   this.password = await bcrypt.hash(this.password, 12);
   

@@ -6,6 +6,8 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/index');
 const usersRoutes = require('./routes/users');
 
+const User = require('./models/User');
+
 // Load .env
 dotenv.config();
 
@@ -25,7 +27,7 @@ app.use('/api/auth/users', usersRoutes);
 
 app.get('/api/test-db', async (req, res) => {
   try {
-    const users = await require('./models/User').find({});
+    const users = await User.find({});
     res.json({
       connected: true,
       count: users.length,
@@ -45,7 +47,7 @@ app.get('/api', (req, res) => {
 });
 
 // ✅ FIXED ERROR HANDLER (REPLACE lines 28-32)
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   console.error('ERROR:', err);
   
   // Handle your custom errors (BadRequestError, UnauthorizedRequestError)
@@ -57,12 +59,13 @@ app.use((err, req, res, next) => {
   }
   
   // Generic server errors
-  res.status(500).json({ 
+  return res.status(500).json({ 
     message: 'Internal server error' 
   });
 });
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
   console.log(`🚀 Server: http://localhost:${PORT}`);
 });

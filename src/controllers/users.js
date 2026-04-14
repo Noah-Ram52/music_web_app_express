@@ -1,18 +1,18 @@
 const jwt = require('jsonwebtoken');
 
-const User = require('../models/User.js');
-const { JWT_SECRET } = require('../utils/coolcode.js');
+const User = require('../models/User');
+const { JWT_SECRET } = require('../utils/coolcode');
 
 // #Response Codes
 
 // #Succesful Responses
-const { OK_REQUEST, CREATED_REQUEST } = require('../HTTP Response/Successful Responses/Successful.js');
+const { OK_REQUEST, CREATED_REQUEST } = require('../HTTP Response/Successful Responses/Successful');
 
 // #Errors
-const BadRequestError = require('../HTTP Response/Errors/BadRequestError.js');
-const UnauthorizedRequestError = require('../HTTP Response/Errors/UnauthorizedError.js');
-const ConflictRequestError = require('../HTTP Response/Errors/ConflictRequestError.js');
-const NotFoundRequestError = require('../HTTP Response/Errors/NotFoundRequestError.js');
+const BadRequestError = require('../HTTP Response/Errors/BadRequestError');
+const UnauthorizedRequestError = require('../HTTP Response/Errors/UnauthorizedError');
+const ConflictRequestError = require('../HTTP Response/Errors/ConflictRequestError');
+const NotFoundRequestError = require('../HTTP Response/Errors/NotFoundRequestError');
 
 
 // GET Requests

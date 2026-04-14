@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../utils/coolcode");
-const { UNAUTHORIZED_ERROR_CODE } = require("../utils/errorCodes");  // 401
+const UnauthorizedRequestError = require("../HTTP Response/Errors/UnauthorizedError");  // 401
 
 
 module.exports = (req, res, next) => {
@@ -9,8 +9,7 @@ module.exports = (req, res, next) => {
   
   // ❌ NO TOKEN = 401
   if (!authorization || !authorization.startsWith('Bearer ')) {
-    return res.status(UNAUTHORIZED_ERROR_CODE)
-      .send({ message: "Authorization Required" });
+      return next(new UnauthorizedRequestError("Authorization Required"));
   }
   
   const token = authorization.replace("Bearer ", "");
@@ -20,8 +19,7 @@ module.exports = (req, res, next) => {
     payload = jwt.verify(token, JWT_SECRET);
   } catch (err) {
     // ❌ INVALID TOKEN = 401
-    return res.status(UNAUTHORIZED_ERROR_CODE)
-      .send({ message: "Invalid Token" });
+      return next(new UnauthorizedRequestError("Invalid Token"));
   }
   
   // ✅ Attach user to req
