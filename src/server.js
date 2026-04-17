@@ -16,7 +16,7 @@ const app = express();
 // Connect to MongoDB
 connectDB();
 
-// ✅ MIDDLEWARE 
+// MIDDLEWARE 
 app.use(cors({ origin: 'http://localhost:3000' }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));  // ✅ FORM DATA
@@ -46,7 +46,7 @@ app.get('/api', (req, res) => {
   res.json({ message: 'Music App Backend API - Ready!' });
 });
 
-// ✅ FIXED ERROR HANDLER (REPLACE lines 28-32)
+// ERROR HANDLER 
 app.use((err, req, res) => {
   console.error('ERROR:', err);
   
