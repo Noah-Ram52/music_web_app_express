@@ -17,9 +17,12 @@ const app = express();
 connectDB();
 
 // MIDDLEWARE 
-app.use(cors({ origin: 'http://localhost:3000' }));
+// app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors({ 
+  origin: ['http://localhost:3000', 'https://noah-ram52.github.io'] 
+}));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));  // ✅ FORM DATA
+app.use(express.urlencoded({ extended: true }));  // FORM DATA
 
 // Routes
 app.use('/api/auth', authRoutes);
