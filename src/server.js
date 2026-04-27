@@ -64,8 +64,10 @@ app.use((err, req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
-  console.log(`🚀 Server: http://localhost:${PORT}`);
-});
+// const PORT = process.env.PORT || 3001;
+// app.listen(PORT, () => {
+//   // eslint-disable-next-line no-console
+//   console.log(`🚀 Server: http://localhost:${PORT}`);
+// });
+
+module.exports = app;
