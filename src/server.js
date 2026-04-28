@@ -48,7 +48,7 @@ app.get('/api', (req, res) => {
 });
 
 // ERROR HANDLER 
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   console.error('ERROR:', err);
   
   // Handle your custom errors (BadRequestError, UnauthorizedRequestError)
