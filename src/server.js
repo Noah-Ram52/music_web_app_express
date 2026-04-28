@@ -16,10 +16,9 @@ const app = express();
 connectDB();
 
 // MIDDLEWARE 
-// app.use(cors({ origin: 'http://localhost:3000' }));
-// OR, for testing, use this to allow any origin 
-// (once it works, tighten this back up):
-app.use(cors({ origin: 'https://your-frontend-domain.up.railway.app' }));
+app.use(cors({ 
+  origin: ['https://noah-ram52.github.io', 'http://localhost:3000']  
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));  // ✅ FORM DATA
 
@@ -68,7 +67,10 @@ app.use((err, req, res) => {
 });
 
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
-  console.log(`🚀 Server: http://localhost:${PORT}`);
+// app.listen(PORT, () => {
+//   // eslint-disable-next-line no-console
+//   console.log(`🚀 Server: http://localhost:${PORT}`);
+// });
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Server: http://0.0.0.0:${PORT}`);
 });
