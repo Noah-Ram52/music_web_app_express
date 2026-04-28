@@ -5,7 +5,6 @@ const connectDB = require('./config/db');
 
 const authRoutes = require('./routes/index');
 const usersRoutes = require('./routes/users');
-
 const User = require('./models/User');
 
 // Load .env
@@ -17,7 +16,10 @@ const app = express();
 connectDB();
 
 // MIDDLEWARE 
-app.use(cors({ origin: 'http://localhost:3000' }));
+// app.use(cors({ origin: 'http://localhost:3000' }));
+// OR, for testing, use this to allow any origin 
+// (once it works, tighten this back up):
+app.use(cors({ origin: 'https://your-frontend-domain.up.railway.app' }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));  // ✅ FORM DATA
 
@@ -59,6 +61,7 @@ app.use((err, req, res) => {
   }
   
   // Generic server errors
+ 
   return res.status(500).json({ 
     message: 'Internal server error' 
   });
