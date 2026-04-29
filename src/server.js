@@ -47,22 +47,20 @@ app.get('/api', (req, res) => {
   res.json({ message: 'Music App Backend API - Ready!' });
 });
 
-// ERROR HANDLER 
+// ERROR HANDLER (must accept 4 args so Express recognizes it)
 app.use((err, req, res, next) => {
   console.error('ERROR:', err);
-  
-  // Handle your custom errors (BadRequestError, UnauthorizedRequestError)
-  if (err.statusCode) {
+
+  if (err && err.statusCode) {
     return res.status(err.statusCode).json({
       error: err.name || 'Error',
       message: err.message
     });
   }
   
-  // Generic server errors
- 
-  return res.status(500).json({ 
-    message: 'Internal server error' 
+ // Generic server errors
+  return res.status(500).json({
+    message: 'Internal server error'
   });
 });
 
